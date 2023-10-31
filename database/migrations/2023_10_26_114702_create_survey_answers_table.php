@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Survey;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,7 +14,10 @@ return new class extends Migration
     {
         Schema::create('survey_answers', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignIdFor(Survey::class,'survey_id');
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
+
         });
     }
 
